@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User List</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+    /* Define the styles for the blue color */
+    .blue {
+      color: blue;
+    }
+    /* Define the styles for the yellow color */
+    .yellow {
+      color: yellow;
+    }
+  </style>
+</head>
+<body>
+    <h1 id="mainHeading" class="blue">Toggle Heading Color</h1>
+  <button id="colorToggleBtn">Toggle Color</button>
+  <h1>User List</h1>
+  <h2>Users from API</h2>
+  <ul id="userList"></ul>
+  <h2>Custom Array Data</h2>
+  <ul id="customList"></ul>
+<button class="btndeletekwdgroup">delte</button>
+  <script>
+    // Define the API endpoint URL
+    const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
+    // Fetch data from the API
+    fetch(apiUrl)
+      .then(response => response.json()) // Parse the JSON response
+      .then(data => {
+        // Check if data is available
+        if (data && data.length > 0) {
+          const userListElement = document.getElementById('userList');
+
+          // Loop through the data and create list items for API users
+          data.forEach(user => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `Name: ${user.name}, Email: ${user.email}`;
+            userListElement.appendChild(listItem);
+          });
+        } else {
+          // Display a message if no data is available from the API
+          const userListElement = document.getElementById('userList');
+          userListElement.textContent = 'No users found from API.';
+        }
+      })
+      .catch(error => {
+        // Display an error message if the fetch operation for API fails
+        console.error('Error fetching data from API:', error);
+      });
+
+    // Custom array of objects
+    const customData = [
+      { id: 1, name: 'John Doe', email: 'john@example.com' },
+      { id: 2, name: 'Jane Doe', email: 'jane@example.com' },
+      { id: 3, name: 'Alice Smith', email: 'alice@example.com' }
+    ];
+
+    // Render custom data on the UI
+    const customListElement = document.getElementById('customList');
+    customData.forEach(item => {
+      const listItem = document.createElement('span');
+      listItem.textContent = `ID: ${item.id}, Name: ${item.name}, Email: ${item.email}`;
+      customListElement.appendChild(listItem);
+    });
+    const headingElement = document.getElementById('mainHeading');
+    const toggleButton = document.getElementById('colorToggleBtn');
+
+    toggleButton.addEventListener('click', function() {
+      // Toggle the 'yellow' class on the heading element
+      headingElement.classList.toggle('yellow');
+    });
+    
+    $(document).on('click', '.btndeletekwdgroup', function () {
+         alert("dbgktjg")
+    })
+  </script>
+</body>
+</html>

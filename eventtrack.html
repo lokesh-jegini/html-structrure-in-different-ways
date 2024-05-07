@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+    <!-- Example Code -->
+    
+        
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    
+   <!-- two parent start -->
+   <h1 class="loki">div inside div then one button is present button have 2 paresent both have event both will apply to button or which is near that will apply need to chekc</h1>
+   <label for="num1">Enter first number:</label>
+   <input type="number" id="num1">
+   <br>
+   <label for="num2">Enter second number:</label>
+   <input type="number" id="num2">
+   <br>
+   <div id="calculator1">
+   <div id="calculator">
+     <button id="calculateBtn">Calculate Sum</button>
+     <p id="result"></p>
+   </div>
+   </div>
+   <!-- two parents end -->
+   <script>
+    document.getElementById("calculateBtn").addEventListener("click", function() {
+      // Get the input values
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+
+      // Check if both inputs are valid numbers
+      if (!isNaN(num1) && !isNaN(num2)) {
+        // Calculate the sum
+        const sum = num1 + num2;
+        
+        // Display the result
+        document.getElementById("result").textContent = `Sum: ${sum}`;
+      } else {
+        // Display an error message if inputs are not valid numbers
+        document.getElementById("result").textContent = "Please enter valid numbers.";
+      }
+    });
+
+    //parent
+    // Attach the event listener to the parent element
+    document.getElementById("calculator").addEventListener("click", function(event) {
+      // Check if the clicked element is the button
+     alert("parent near to the button")
+
+    });
+
+    $(document).on('click', '#calculator1', function () {
+         alert("dbgktjg")
+    })
+        // Attach the event listener to the parent element
+//         document.getElementById("calculator1").addEventListener("click", function(event) {
+//       // Check if the clicked element is the button
+//  alert("two parents")
+//     });
+   </script>
+  </body>
+</html>

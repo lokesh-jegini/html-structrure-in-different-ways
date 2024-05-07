@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    // jQuery script starts here
+    $(document).ready(function() {
+      // Create a new select element
+      var dropdown = $('<select>');
+
+      // Add options to the dropdown
+      dropdown.append($('<option>').text('Option 1').val('1'));
+      dropdown.append($('<option>').text('Option 2').val('2'));
+      dropdown.append($('<option>').text('Option 3').val('3'));
+
+      // Append the dropdown to a container element (e.g., body)
+      $('p').append(dropdown);
+    });
+  </script>
+</head>
+<body>
+  <!-- The paragraph where the dropdown will be appended -->
+  <p>Click me too!</p>
+</body>
+</html>
