@@ -9,13 +9,15 @@ function App() {
   const [totalpagenumbers ,setTotalpagenumbers]=useState()
   let [pagenumbers , setpageNumbers]=useState(1)
   let [pagelimit ,setPagelimit]=useState(5)
+  const [currentPageData, setCurrentPageData] = useState([]);
  
-  
+ 
   
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        
         setData(response.data);
        
       } catch (error) {
@@ -23,41 +25,36 @@ function App() {
       }
     };
     fetchData();
-    debugger
-  }, []);
+  }, [data]);
 
     
-//   // Update total page numbers when data changes
-//   useEffect(() => {
-//     if (data && data.length > 0) {
-//       setTotalpagenumbers( Math.ceil(data.length / pagelimit));
-//     }
-   
-//   }, []); 
- 
-
-// //pageslice function (for loops or condior start and end point is mandatory)
-let pageslice=()=>{
-    debugger
-    let slicedata=[]
-    debugger
-    for(let i=(pagenumbers-1)*pagelimit;i<pagenumbers*pagelimit;i++) {
-      slicedata.push(data[i])
-    }
-     setData(slicedata)
-     console.log(slicedata)
-  }
+  // Update total page numbers when data changes
   useEffect(() => {
-    pageslice(pagenumbers,pagelimit)
+    if (data && data.length > 0) {
+      debugger
+      setTotalpagenumbers( Math.ceil(data.length / pagelimit));
+    }
    
-  }, [data]); 
+  }, []); 
+  useEffect(() => {
+    pageslice(pagenumbers, pagelimit);
+  }, [data,pagenumbers]);
+ 
+ 
+  const pageslice = (pageNum, pageLimit) => {
+    const startIndex = (pageNum - 1) * pageLimit;
+    const endIndex = pageNum * pageLimit;
+    const slicedData = data.slice(startIndex, endIndex);
+    setCurrentPageData(slicedData);
+
+  };
   
   return (
     <>
     <div className="App">
      <h1>Posts</h1>
       <ul>
-        {data.map((item) => (
+        {currentPageData.map((item) => (
           <li key={item.id}>{item.title}</li>
         ))}
       </ul>
@@ -65,7 +62,7 @@ let pageslice=()=>{
     {
       Array.from({length:totalpagenumbers},(_,index)=>{
        return <button onClick={(e)=>{
-       console.log(e)
+        setpageNumbers(index+1)
        }} value={index+1}>{index+1}</button>
       })
     }
@@ -77,4 +74,3 @@ let pageslice=()=>{
 
 
 export default App;
-//  on the page slice i am getting empty data array but already i update the data from the first useeffect
